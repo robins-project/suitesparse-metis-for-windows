@@ -6,6 +6,8 @@ INCLUDE_DIRECTORIES(${SuiteSparse_GPURuntime_INCLUDE})
 FILE(GLOB LIBHDRS "Include/*.h")
 FILE(GLOB LIBSRCS "Source/*.cpp" "Source/*.cu" "Include/*.cu" "Source/Scheduler/*.cpp" "Source/LLBundle/*.cpp" "Source/BucketList/*.cpp" "Source/TaskDescriptor/*.cpp")
 
+FIND_PACKAGE(CUDA REQUIRED)
+INCLUDE_DIRECTORIES(${CUDA_INCLUDE_DIRS})
 CUDA_ADD_LIBRARY(GPUQREngine STATIC ${LIBHDRS} ${LIBSRCS})
 #declare_suitesparse_library(GPUQREngine "${LIBSRCS}" "${LIBHDRS}")
 SET(SuiteSparse_GPUQREngine_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/Include" PARENT_SCOPE)
